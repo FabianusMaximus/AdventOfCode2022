@@ -1,3 +1,6 @@
+from typing import List, Any
+
+
 class Folder:
 
     def __init__(self, name: str, parent=None):
@@ -41,16 +44,14 @@ class Folder:
         return False
 
     def getAllFolders(self) -> []:
-        allFolders = []
+        allFolders = [self]
         if self.hastChildren:
             for folder in self.folders:
-                allFolders.append(folder)
-                if folder.hastChildren:
-                    allFolders = allFolders + folder.getAllFolders()
+                folder.getAllFolders()
         return allFolders
 
     def folderToString(self, depth=0) -> str:
-        string = ""
+        string: str = ""
         string += "  " * depth + "|__" + self.name + " " + str(self.getTotalSize()) + "\n"
         if self.hastChildren:
             for file in self.files:

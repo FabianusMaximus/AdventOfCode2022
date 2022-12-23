@@ -38,3 +38,14 @@ class Utility:
             if folder.getTotalSize() < 100000:
                 sum += folder.getTotalSize()
         return sum
+
+    def findSmallesDirectory(self, rootFolder: Folder, minSize=0) -> int:
+        possibleFolders = []
+        allFolders = rootFolder.getAllFolders()
+        print(allFolders[0].getName())
+        for folder in allFolders:
+            totalSize = folder.getTotalSize()
+            if totalSize >= minSize:
+                possibleFolders.append(totalSize)
+
+        return min(possibleFolders)
