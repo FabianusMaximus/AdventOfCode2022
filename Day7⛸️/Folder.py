@@ -47,7 +47,7 @@ class Folder:
         allFolders = [self]
         if self.hastChildren:
             for folder in self.folders:
-                folder.getAllFolders()
+                allFolders += folder.getAllFolders()
         return allFolders
 
     def folderToString(self, depth=0) -> str:
