@@ -6,5 +6,6 @@ utility = Utility()
 rootFolder = Folder('root')
 input = utility.readfile('input')
 utility.buildArray(rootFolder, input)
-
-print(str(utility.getSumAllFoldersLessThen100000(rootFolder)))
+unsetSpace = 70000000 - rootFolder.getTotalSize()
+minSize = 30000000 - unsetSpace
+print(str(utility.findSmallesDirectory(rootFolder, minSize)))
