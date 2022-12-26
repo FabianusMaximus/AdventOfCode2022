@@ -4,7 +4,7 @@ from Folder import *
 
 class Utility:
 
-    def __init__(self):
+    def __init__(self) -> object:
         pass
 
     def readfile(self, file: str):
