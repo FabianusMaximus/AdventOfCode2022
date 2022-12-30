@@ -1,4 +1,4 @@
-from Day8.Utility import *
+from Utility import *
 
 
 def check_left(tree_arr: list, current_x: int, current_y: int) -> int:
