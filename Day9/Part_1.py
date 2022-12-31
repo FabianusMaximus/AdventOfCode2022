@@ -1,4 +1,5 @@
 from Utility import *
+from Field import *
 
 utility = Utility()
 
@@ -70,3 +71,7 @@ print("Y-Position Kopf: " + str(pos_y_h))
 print("X-Position Schwanz: " + str(pos_x_t))
 print("Y-Position Schwanz: " + str(pos_y_t))
 # print_field(-10, -20, pos_x_h, pos_y_h, pos_x_t, pos_y_t)
+
+field = Field(20, 20)
+
+field.print_field()
