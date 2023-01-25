@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "python",
+            "name": "Day8 Part_1.py",
+            "arguments": [],
+            "file": "Day8/Part_1.py",
+        },
+
+    ]
+}
