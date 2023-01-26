@@ -1,37 +1,60 @@
+function incrementCycle(cycle) {
+    cycle.c += 1;
+}
+
+function checkCycle(number) {
+    return number === 20 || number === 60 || number === 100 || number === 140 || number === 180 || number === 220;
+}
+
+function calculateSignalStrength(cycle, register) {
+    console.log(`Ich rechne: ${cycle.c} * ${register.r}`)
+    return cycle.c * register.r;
+}
+
 function addx(cycle, register, value) {
     let importantValue = 0;
-    for (let i = 0; i < 3; i++) {
-        cycle.c += 1;
-        if (cycle.c === 20 || cycle.c === 60 || cycle.c === 100 || cycle.c === 140 || cycle.c === 180) {
-            importantValue = cycle.c * register.r;
+    for (let i = 0; i < 2; i++) {
+        incrementCycle(cycle);
+        if (checkCycle(cycle.c)) {
+            importantValue = calculateSignalStrength(cycle, register);
         }
-        if (i === 2) {
+        if (i === 1) {
             register.r += value;
         }
     }
     return importantValue;
 }
 
+function nopp(cycle, register) {
+    incrementCycle(cycle);
+    if (checkCycle(cycle.c)) {
+        return calculateSignalStrength(cycle, register);
+    }
+    return 0
+}
+
 const fs = require('fs');
 try {
-    let input = fs.readFileSync('./input.txt', 'utf8');
     let cycle = {c: 0};
-    let register = {r: 0};
-    input = input.replaceAll("\r", "");
+    let register = {r: 1};
+    let input = fs.readFileSync('./input.txt', 'utf8').replaceAll("\r", "");
     let line = input.split("\n");
     let signalStrengths = [];
     let erg = 0;
     for (const operation of line) {
         let split = operation.split(" ");
+        let iValue = 0;
         if (split[0] === "addx") {
-            let iValue = addx(cycle, register, parseInt(split[1]));
-            if (iValue !== 0) {
-                signalStrengths.push(iValue);
-            }
+            iValue = addx(cycle, register, parseInt(split[1]));
         } else {
-            cycles += 1;
+            iValue = nopp(cycle, register);
+        }
+        if (iValue !== 0) {
+            signalStrengths.push(iValue);
         }
     }
+
+    console.log("signal Länge: ", signalStrengths.length);
     for (const strength of signalStrengths) {
         erg += strength;
     }
