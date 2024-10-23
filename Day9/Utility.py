@@ -3,6 +3,6 @@ class Utility:
     def __init__(self) -> object:
         pass
 
-    def readfile(self, file: str):
+    def read_file(self, file: str):
         return open(file, "r").read()
 

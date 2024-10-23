@@ -24,3 +24,6 @@ class Point:
 
     def set_display(self, display: str):
         self.display = display
+
+    def reset(self):
+        self.display = "."
